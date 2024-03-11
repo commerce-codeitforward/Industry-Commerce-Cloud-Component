@@ -1,0 +1,208 @@
+body{
+    font-family: "SF UI Text", Arial, sans-serif !important;
+    font-size: 1.125rem;
+    background-color:#FFFFFF;
+    color: #333333 !important;
+}
+a{
+    color: #0070D2;
+}
+.container{
+    background-color: #FFFFFF;
+    max-width: 1440px;
+    margin: auto;
+}
+.store-locater_section{
+      color: #000000 !important;
+}
+.sl-title{
+    font-size: 40px;
+    color: #000000;
+}
+.search-button{
+    background: #333333;
+    color: #FFFFFF;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 13px;
+    border: none;
+    padding: 6px 65px;
+}
+.search-input{
+    border-radius: 20px;
+}
+.filter-text{    
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 1px;
+    color: #333333;
+}
+.show-menu-title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 13px;
+    color: #2A2A2A;
+    padding: 5px 10px;
+}
+.show-menu{
+    width: 150px;
+    padding: 5px 10px;
+    line-height: 32px;
+    color: #2A2A2A;
+    font-weight: 400;
+}
+.apply-filter-text{    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 13px;
+    text-align: right;
+    color: #2A2A2A;
+    padding-left: 20px;
+}
+.left-side-section{
+    min-height: 500px;
+    max-height: 740px;
+    overflow-x: hidden;
+    height: 100%;
+    background: #FFFFFF;
+}
+.product-option_line-item{
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+.product-option_line-item-selected{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+.poli-text-heding{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 24px;
+    color: #333333;
+}
+.poli-text-miles-away{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 24px;
+    color: #666666;
+}
+.poli-text-store-details{
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration-line: underline;
+    color: #0176D3;
+    line-height: 24px;
+    padding-left: 20px;
+}
+.poli-text-time{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 24px;
+    color: #2E844A;
+}
+
+.address-section{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 22px;
+    color: #181818;
+}
+.select-store-button{
+    background: #000000;
+    color: #FFFFFF;
+    border-radius: 60px;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    padding: 12px 80px;
+}
+.select-store-button-disabled{
+    background: #cdd0d6;
+    color: #000000;
+    border-radius: 60px;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    padding: 12px 80px;
+}
+.load-more{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    color: #181818;
+
+}
+.font{
+    font-size: 13px;
+}
+.store-text{
+    font-weight: bold;
+    font-size: large;
+}
+.slds-accordion__summary-content{
+    font-size: 13px;
+    color: #0070D2 !important;
+}
+.slds-button .slds-accordion__summary-action{
+    font-size: 13px !important;
+    color: #0070D2 !important;
+    padding: 10px !important;
+}
+.slds-input-has-icon .slds-input__icon:not(button) {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.slds-button--brand, .slds-button_brand{
+    border-radius: 60px;
+    padding: 5px;
+    width: 100%;
+}   
+.input-search-button[b2b_search_suggestions-input_input]{
+    padding: 0px 16px !important;
+}
+.slds-button--neutral, .slds-button_neutral{
+    border-radius: 60px;
+    padding: 5px 20px;
+}
+.slds-button--neutral:active, .slds-button_neutral:active{
+    background-color: #FFFFFF !important;
+    border-color: #DDDDDD !important;
+}
+.btn-inverse{
+    color: #000000;
+    background: #FFFFFF;
+}
+
+
+@media (min-width:280px) and (max-width:720px){
+    .m-padding_zero{
+        padding: 0px !important;
+    }
+    .search-button{
+        width: 100%;
+    }
+    .slds-map{
+        min-width: 20.75rem !important;
+    }
+    /* .map-width{
+        width: 320px !important;
+    } */
+  }
+  @media (min-width:768px) and (max-width:1024px){
+  .ipad_padding{
+      padding: 20px;
+  }
+  }

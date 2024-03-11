@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <description>Store Locator</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Store Locator</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__HomePage, lightning__RecordPage, lightningCommunity__Default">
+            <property name="distance" type="Integer" label="Maxium Search Radius" default="9000"/>
+            <property name="unit" type="String" label="Unit(mi/km)" default="mi"/>
+            <property name="serviceClassName" type="String" default="Commerce_StoreLocatorService" required="true" label="Service Class Name"/>
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>

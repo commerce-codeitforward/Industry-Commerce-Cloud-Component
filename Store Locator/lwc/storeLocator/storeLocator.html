@@ -1,0 +1,207 @@
+<template>
+    <div class="container slds-p-around_xx-large ipad_padding m-padding_zero">
+        <div class="store-locater_section">
+            <div class="slds-p-vertical_large slds-text-align_center ">
+                <div class="sl-title">Find a Store Near You</div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_xx-large slds-border_bottom slds-text-align_center ">
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+                  <span></span>
+                </div>
+                
+                <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                  <!-- <div class="slds-form-element">
+                      <input type="text" id="text-input-id-47" placeholder="Search by zip code or city" class="slds-input search-input" onchange={handleOnChange}/>
+                  </div> -->
+
+                  <div class="slds-form-element">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right"> 
+                            <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                <use xlink:href={searchIconUrl}></use> 
+                            </svg> 
+
+                        <lightning-icon size="x-small" style="margin-top: -10px;" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" icon-name="utility:checkin" onclick={getUserLocation}></lightning-icon>
+                        <input type="text" id="text-input-id-1" placeholder="Search by zip, city, state, or name" class="slds-input search-input" value={searchInput} onkeyup={handleKeyPress} onchange={handleOnChange}/>
+                    </div>
+                </div>
+
+                </div>
+
+                </div>
+                <div class="slds-col slds-large-size_1-of-12 slds-medium-size_2-of-12 slds-size_12-of-12">
+                  <span><button onclick={handleSearch} class="search-button">Search</button></span>
+                </div>
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="slds-m-around_large">
+                 <div if:true={isLoading} class="slds-is-relative">
+                    <lightning-spinner
+                        alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </div>
+              </div>
+              
+              <div class="slds-grid slds-wrap slds-gutters slds-p-vertical_medium">
+                <div class="slds-col slds-large-size_4-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 left-side-section">
+                    <div class="slds-p-vertical_x-small">
+                        <span class="filter-text">Filters</span> 
+                        <span class="slds-p-left_small"> 
+                            <lightning-button-menu alternative-text="Show menu" variant="bare">
+                                <!-- <h2 class="show-menu-title">Type</h2>
+                                <div if:true={filterPicklistValues}>
+                                    <lightning-checkbox-group
+                                        class="show-menu"
+                                        options={filterPicklistValues}
+                                        value={value}
+                                        onchange={handlePicklistChange}
+                                        disabled="disabled">
+                                    </lightning-checkbox-group>
+                                </div>  -->
+                                <h2 class="show-menu-title">Distance ({unit})</h2>
+                                <div class="slds-p-around--medium">
+                                    <lightning-slider
+                                        step="1"
+                                        value={distance}
+                                        min="1"
+                                        max={maxRadius}
+                                        onchange={handleSliderChange}>
+                                    </lightning-slider>
+                                    <button onclick={handleApplybtn} class="search-button">Apply</button>
+                                </div>   
+                            </lightning-button-menu>
+                        </span> 
+                        <span class="apply-filter-text">{filterCount} filter(s) applied</span>
+                    </div>
+
+                    <div if:false={foundStore} class="slds-align--absolute-center slds-p-top--medium store-text">
+                        <p class={displayClass}>Sorry, no stores found matching with the search criteria.</p>
+                    </div>
+
+                   <template for:each={mapMarkers} for:item="acc">
+                        <div key={acc.Id} onclick={handleTileClick} data-id={acc.Id} class="slds-m-vertical_medium slds-p-around--small product-option_line-item">
+                            <div class="slds-p-around_small">
+                                <p class="poli-text-heding">{acc.title}</p>
+                                <p><span class="poli-text-miles-away">{acc.distance} {unit} away</span>
+                                </p>
+                                <p class="poli-text-time">{acc.storetime}</p>
+                                <p class="font">Phone: {acc.phone}</p>
+                            </div>
+                            <div class="slds-grid slds-wrap font">
+                                <div class="slds-col slds-large-size_5-of-12 slds-medium-size_5-of-12 slds-size_12-of-12">
+                                    <div class="slds-p-vertical_xx-small">
+                                        <p class="address-section">
+                                            Address: <br>
+                                        </p>    
+                                            {acc.location.Street} <br>
+                                            {acc.location.City}, {acc.location.State} {acc.location.PostalCode}
+                                        
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-large-size_7-of-12 slds-medium-size_7-of-12 slds-size_12-of-12">
+                                    <div class="slds-p-vertical_xx-small">
+                                        <p class="address-section">
+                                            Store Hours: <br>
+                                        </p>
+                                            <lightning-formatted-rich-text
+                                                value={acc.timings}>
+                                            </lightning-formatted-rich-text>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+                                    <lightning-accordion-section name={acc.Id} label="Show Store Details">
+                                        <div class="slds-grid slds-wrap font">
+                                            <div class="slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12">
+                                                <div class="slds-p-vertical_small">
+                                                    <b>Services:</b><br/>
+                                                    <lightning-formatted-rich-text
+                                                        value={acc.services}>
+                                                    </lightning-formatted-rich-text>
+                                                </div>
+                                            </div>
+                                            <div class="slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12">
+                                                <div class="slds-p-vertical_small">
+                                                    <b>Facilities:</b><br/>
+                                                    <lightning-formatted-rich-text
+                                                        value={acc.facilities}>
+                                                    </lightning-formatted-rich-text>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </lightning-accordion-section>
+                                </lightning-accordion>
+                            </div>
+                            <div if:true={loggedinUser}>
+                                <div if:true={acc.isDefault} class="slds-p-vertical_small slds-text-align_center">
+                                    <lightning-button class=""
+                                    id={acc.Id}
+                                    data-store={acc.Id} 
+                                    data-name={acc.title}
+                                    data-street={acc.location.Street} 
+                                    data-city={acc.location.City}
+                                    data-state={acc.location.State} 
+                                    data-zipcode={acc.location.PostalCode}
+                                    data-phone={acc.phone}
+                                    data-timings={acc.timings}
+                                    data-services={acc.services}
+                                    data-facilities={acc.facilities}
+                                    icon-name="utility:check"
+                                    variant="neutral" label="Default Store"></lightning-button>
+                                </div>
+
+                                <div if:false={acc.isDefault} class="slds-p-vertical_small slds-text-align_center">
+                                    <lightning-button class=""
+                                    id={acc.Id}
+                                    data-store={acc.Id} 
+                                    data-name={acc.title}
+                                    data-street={acc.location.Street} 
+                                    data-city={acc.location.City}
+                                    data-state={acc.location.State} 
+                                    data-zipcode={acc.location.PostalCode}
+                                    data-phone={acc.phone}
+                                    data-timings={acc.timings}
+                                    data-services={acc.services}
+                                    data-facilities={acc.facilities}
+                                    icon-name={iconName}
+                                    onclick={handleStoreSelect} variant="brand" label="Make Default"></lightning-button>
+                                </div>
+
+                            </div>
+                            <div if:false={loggedinUser}>
+                                <div class="slds-p-vertical_small slds-text-align_center">
+                                    <lightning-button class=""
+                                    onclick={handleGuestClick} variant="brand" label="Make Default"></lightning-button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </template>
+
+
+                </div>
+                
+                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+                    <div class="slds-p-vertical_x-small slds-text-align_center">
+                        <lightning-map map-markers={mapMarkers} class="map-width" 
+                            markers-title={markersTitle} 
+                            zoom-level={zoomLevel} 
+                            onmarkerselect={handleMarkerSelect}
+                            selected-marker-value={selectedMarkerValue}
+                            list-view="hidden">
+                        </lightning-map>
+
+                    </div>
+
+                </div>
+              </div>   
+              
+        </div>
+    </div>
+</template>
