@@ -17,7 +17,7 @@ In most cases, you'll be able to hit the ground running with these components an
 
 | Components  | 
 | ------------- | 
-| [Store Locator](/store-locator/)  | 
+| [Store Locator](/Store%20Locator/)  | 
 
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!
