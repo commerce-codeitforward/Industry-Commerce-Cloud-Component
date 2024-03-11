@@ -18,7 +18,7 @@ The Store Locator component is designed to allow you to show a visual list of al
 - Unit Select (mi / km)
 - Default Max Search Radius
 - Preferred Store selection
-<img src="./images/store-locator.png" width="500">
+<img src="./Images/store-locator.png" width="500">
 
 Store locations are pulled from the 'Location' object and basedon the Location Address object to find where the stores are located. 
 
@@ -30,12 +30,12 @@ Store locations are pulled from the 'Location' object and basedon the Location A
 
 ## Data Steps
 1. Navigate to the Location object and create a new record similiar to the following (note: you won't be able to add the visitor address until after you've initially saved the locaiton record, we'll do that in the next step). 
-<img src="./images/location.png" width="500">
+<img src="./Images/location.png" width="500">
 2. Edit the record you just created and click into the Visitor Address field until the '+ New Address' dropdown opens. 
 3. Create a new Visitor Address, the lat & long fields at the bottom of the page will populate after saving the address. (Make sure the Type is set to 'Site')
-<img src="./images/address.png" width="500">
+<img src="./Images/address.png" width="500">
 4. Navigate to the account you will be using to view the component, update the 'Default Store' field with the new location you created
-<img src="./images/account.png" width="500">
+<img src="./Images/account.png" width="500">
 
 ## Access Steps
 1. Provide Apex Class access for 'Commerce_StoreLocator' to all users who will be interacting with this component on the storefront through a profile or permission set.
@@ -64,7 +64,7 @@ Searching works with the following fields as follows:
 ## Filtering
 The filtering functionality is a great feature to narrow down the results if you have locations across the world. You can slide the value down to the desired distance and click 'Apply Filter' for the results to update. 
 
-<img src="./images/store-data-model.png" width="500">
+<img src="./Images/store-data-model.png" width="500">
 
 # Considerations
 This version does not support following features:
