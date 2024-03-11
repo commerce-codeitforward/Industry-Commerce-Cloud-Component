@@ -64,6 +64,9 @@ Searching works with the following fields as follows:
 ## Filtering
 The filtering functionality is a great feature to narrow down the results if you have locations across the world. You can slide the value down to the desired distance and click 'Apply Filter' for the results to update. 
 
+## Data Model
+- Location - The store location
+- Address - The address of the store location that will show on the map
 <img src="./Images/store-data-model.png" width="500">
 
 # Considerations
